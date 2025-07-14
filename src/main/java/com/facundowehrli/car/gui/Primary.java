@@ -1,4 +1,4 @@
-package com.facundowehrli.cars.gui;
+package com.facundowehrli.car.gui;
 
 public class Primary extends javax.swing.JFrame {
     

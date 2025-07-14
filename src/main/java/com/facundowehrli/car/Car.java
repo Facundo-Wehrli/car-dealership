@@ -1,9 +1,14 @@
-package com.facundowehrli.cars;
+package com.facundowehrli.car;
 
+import com.facundowehrli.car.gui.Primary;
 
 public class Car {
-
+    
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        
+       // call and make gui visible
+        Primary prim = new Primary();
+        prim.setVisible(true);
+        prim.setLocationRelativeTo(null);
     }
 }

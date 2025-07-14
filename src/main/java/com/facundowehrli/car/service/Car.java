@@ -1,4 +1,4 @@
-package com.facundowehrli.cars.service;
+package com.facundowehrli.car.service;
 
 public class Car {
 
