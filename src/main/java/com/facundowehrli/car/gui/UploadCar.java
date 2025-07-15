@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.facundowehrli.car.gui;
 
-/**
- *
- * @author Facu
- */
+import com.facundowehrli.car.service.Controller;
+
 public class UploadCar extends javax.swing.JFrame {
-    
+
+    Controller control = new Controller();
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UploadCar.class.getName());
 
     /**
@@ -84,6 +80,11 @@ public class UploadCar extends javax.swing.JFrame {
 
         btnClean.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnClean.setText("CLEAN");
+        btnClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCleanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -187,9 +188,25 @@ public class UploadCar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtBrandActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
+
+        String model = txtModel.getText();
+        String brand = txtBrand.getText();
+        String engine = txtEngine.getText();
+        String licencePlate = txtPlate.getText();
+        String color = txtColor.getText();
+        int doorCount = Integer.parseInt(txtDoorsCount.getText());
+
+        control.addCar(model, brand, engine, licencePlate, color, doorCount);
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
+        txtModel.setText("");
+        txtBrand.setText("");
+        txtEngine.setText("");
+        txtPlate.setText("");
+        txtColor.setText("");
+        txtDoorsCount.setText("");
+    }//GEN-LAST:event_btnCleanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
