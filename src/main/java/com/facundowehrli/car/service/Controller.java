@@ -1,6 +1,7 @@
 package com.facundowehrli.car.service;
 
 import com.facundowehrli.car.persistence.PersistenceController;
+import com.facundowehrli.car.persistence.exceptions.NonexistentEntityException;
 import java.util.List;
 
 public class Controller {
@@ -21,7 +22,11 @@ public class Controller {
     }
 
     public List<Car> getCars() {
-     return  controlPersis.getCars();
+        return controlPersis.getCars();
+    }
+
+    public void deleteCar(int idCar) throws NonexistentEntityException {
+        controlPersis.deleteCar(idCar);
     }
 
 }

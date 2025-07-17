@@ -1,8 +1,11 @@
 package com.facundowehrli.car.gui;
 
+import com.facundowehrli.car.persistence.exceptions.NonexistentEntityException;
 import com.facundowehrli.car.service.Car;
 import com.facundowehrli.car.service.Controller;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ReadUpdateCar extends javax.swing.JFrame {
@@ -65,11 +68,6 @@ public class ReadUpdateCar extends javax.swing.JFrame {
 
         btnEdit1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnEdit1.setText("EDIT");
-        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEdit1ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -145,17 +143,45 @@ public class ReadUpdateCar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        //check if table is empty
+        if (carsTable.getRowCount() > 0) {
+            //validate if a row is selected
+            if (carsTable.getSelectedRow() != -1) {
+                //get id from the car wanted to be deleted  
+                int idCar = (int) carsTable.getValueAt(carsTable.getSelectedRow(), 0);
+                try {
+                    //method that calls controller layer
+                    control.deleteCar(idCar);
+                } catch (NonexistentEntityException ex) {
+                    System.getLogger(ReadUpdateCar.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+                }
+                showMessage("Deleted Sucessufully", "Info", "Deleted");
+                uploadTable();
+            } else {
+                showMessage("Please select a row before pressing delete button", "Error", "No row is selected");
+            }
+        } else {
+            showMessage("Empty table", "Error", "Not found elements");
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
+    //option pane method
+    public void showMessage(String mensaje, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if (tipo.equals("Info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equals("Error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+
+    }
+
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
         uploadTable();
     }//GEN-LAST:event_formWindowOpened
-
-    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEdit1ActionPerformed
 
     private void uploadTable() {
         DefaultTableModel defTableModel = new DefaultTableModel() {
