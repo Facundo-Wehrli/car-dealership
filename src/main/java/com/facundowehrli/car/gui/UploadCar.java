@@ -1,6 +1,8 @@
 package com.facundowehrli.car.gui;
 
 import com.facundowehrli.car.service.Controller;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class UploadCar extends javax.swing.JFrame {
 
@@ -197,6 +199,11 @@ public class UploadCar extends javax.swing.JFrame {
         int doorCount = Integer.parseInt(txtDoorsCount.getText());
 
         control.addCar(model, brand, engine, licencePlate, color, doorCount);
+        JOptionPane optionPane = new JOptionPane("added");
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("successfully added");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
