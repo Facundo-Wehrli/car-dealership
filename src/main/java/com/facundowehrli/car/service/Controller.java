@@ -1,6 +1,7 @@
 package com.facundowehrli.car.service;
 
 import com.facundowehrli.car.persistence.PersistenceController;
+import java.util.List;
 
 public class Controller {
 
@@ -17,6 +18,10 @@ public class Controller {
         car.setDoorCount(doorCount);
 
         controlPersis.addCar(car);
+    }
+
+    public List<Car> getCars() {
+     return  controlPersis.getCars();
     }
 
 }
