@@ -1,6 +1,7 @@
 package com.facundowehrli.car.persistence;
 
 import com.facundowehrli.car.service.Car;
+import java.util.List;
 
 public class PersistenceController {
 
@@ -9,5 +10,9 @@ public class PersistenceController {
     public void addCar(Car car) {
         carJpa.create(car);
     }
-    
+
+    public List<Car> getCars() {
+        return carJpa.findCarEntities();
+    }
+
 }
