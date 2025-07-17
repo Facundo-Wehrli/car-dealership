@@ -22,6 +22,11 @@ public class Primary extends javax.swing.JFrame {
         btnUploadCar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setText("Car Dealership");
@@ -97,6 +102,10 @@ public class Primary extends javax.swing.JFrame {
 
     private void btnEditCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditCarActionPerformed
         // TODO add your handling code here:
+        ReadUpdateCar updateCar = new ReadUpdateCar();
+        updateCar.setVisible(true);
+        updateCar.setLocationRelativeTo(null);
+        
     }//GEN-LAST:event_btnEditCarActionPerformed
 
     private void btnUploadCarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUploadCarActionPerformed
@@ -105,6 +114,12 @@ public class Primary extends javax.swing.JFrame {
         upload.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnUploadCarActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+    
+   
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnEditCar;
