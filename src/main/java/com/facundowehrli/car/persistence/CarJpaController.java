@@ -21,7 +21,6 @@ public class CarJpaController implements Serializable {
     public CarJpaController() {
         emf = Persistence.createEntityManagerFactory("carPU");
     }
-
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
