@@ -68,6 +68,11 @@ public class ReadUpdateCar extends javax.swing.JFrame {
 
         btnEdit1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnEdit1.setText("EDIT");
+        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -183,6 +188,26 @@ public class ReadUpdateCar extends javax.swing.JFrame {
         uploadTable();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
+        if (carsTable.getRowCount() > 0) {
+            //validate if a row is selected
+            if (carsTable.getSelectedRow() != -1) {
+                //get id from the car wanted to be edited  
+                int idCar = (int) carsTable.getValueAt(carsTable.getSelectedRow(), 0);
+                EditCar edit = new EditCar(idCar);
+                edit.setVisible(true);
+                edit.setLocationRelativeTo(null);
+
+                this.dispose();
+
+            } else {
+                showMessage("Please select a row before pressing edit button", "Error", "No row is selected");
+            }
+        } else {
+            showMessage("Empty table", "Error", "Element not found");
+        }
+    }//GEN-LAST:event_btnEdit1ActionPerformed
+
     private void uploadTable() {
         DefaultTableModel defTableModel = new DefaultTableModel() {
             //make the table unneditable
@@ -208,7 +233,7 @@ public class ReadUpdateCar extends javax.swing.JFrame {
                 defTableModel.addRow(object);
             }
         }
-
+        
         carsTable.setModel(defTableModel);
     }
 
